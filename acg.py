@@ -21,6 +21,9 @@ data = load_data()
 st.subheader("Datos Cargados")
 st.write(data)
 
+data['latitude'] = pd.to_numeric(data['latitude'], errors='coerce')
+data['longitude'] = pd.to_numeric(data['longitude'], errors='coerce')
+
 # Verificar que las columnas 'latitude' y 'longitude' existan
 if 'latitude' in data.columns and 'longitude' in data.columns:
     # Crear un mapa centrado en la ubicación promedio
