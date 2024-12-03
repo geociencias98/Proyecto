@@ -25,21 +25,22 @@ st.write(data)
 data.columns = data.columns.str.strip().str.lower()
 
 # Mostrar la tabla
-st.subheader('Casos totales y muertes totales por país y por día')
+st.subheader('Avistamientos de mamíferos en el Área de Conservación Guanacaste')
 st.dataframe(data, hide_index=True)
 
-# Agrupar por fecha y sumar los casos totales
-casos_totales_por_fecha = (
-    datos_filtrados
-    .groupby('year')['common_name']
-    .sum()
-    .reset_index()
-)
 
-# Crear el gráfico de líneas para casos totales
-fig_casos = px.line(
-    casos_totales_por_fecha, 
-    x='year', 
-    y='common_name', 
-    title='Casos totales a lo largo del tiempo',
-    labels={'Casos totales': 'Cantidad de casos totales', 'Fecha': 'Fecha'}
+# Verificar que la columna 'common_name' exista
+if 'common_name' in data.columns:
+    # Crear un selectbox para el campo 'common_name'
+    common_names = data['common_name'].unique()
+    selected_common_name = st.selectbox("Selecciona un nombre común:", common_names)
+
+    # Filtrar los datos según el nombre común seleccionado
+    filtered_data = data[data['common_name'] == selected_common_name]
+
+    # Mostrar tabla con los datos filtrados
+    st.subheader("Datos Filtrados por Nombre Común")
+    st.dataframe(filtered_data)
+else:
+    st.write("La columna 'common_name' no se encuentra en el DataFrame.")
+
