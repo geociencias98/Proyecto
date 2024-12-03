@@ -29,9 +29,8 @@ st.subheader('Avistamientos de mamíferos en el Área de Conservación Guanacast
 st.dataframe(data, hide_index=True)
 
 
-# Verificar que la columna 'common_name' exista
+# Crear un selectbox para filtrar por 'common_name'
 if 'common_name' in data.columns:
-    # Crear un selectbox para el campo 'common_name'
     common_names = data['common_name'].unique()
     selected_common_name = st.selectbox("Selecciona un nombre común:", common_names)
 
