@@ -21,3 +21,9 @@ data = load_data()
 st.subheader("Base de datos")
 st.write(data)
 
+# URL de la imagen
+image_url = "https://raw.githubusercontent.com/geociencias98/Proyecto/main/Mapa.png"
+
+# Mostrar la imagen en Streamlit
+st.image(image_url, caption='Mapa', use_column_width=True)
+
