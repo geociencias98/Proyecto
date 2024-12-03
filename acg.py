@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import folium
+from folium import plugins
 
 # Configuración de la aplicación
 st.title("Explorador de Datos de Especies")
