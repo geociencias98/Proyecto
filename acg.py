@@ -17,20 +17,15 @@ def load_data():
 # Cargar los datos
 data = load_data()
 
-# Mostrar los datos
-st.subheader("Base de datos")
-st.write(data)
+# Mostrar la tabla
+st.subheader('Base de datos')
+st.dataframe(data, hide_index=True)
 
 # Normalizar nombres de columnas
 data.columns = data.columns.str.strip().str.lower()
 
 # Verificar columnas
 st.write("Columnas disponibles:", df.columns)
-
-# Mostrar la tabla
-st.subheader('Avistamientos de mamíferos en el Área de Conservación Guanacaste')
-st.dataframe(data, hide_index=True)
-
 
 # Crear un selectbox para filtrar por 'common_name'
 if 'common_name' in data.columns:
