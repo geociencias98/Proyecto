@@ -19,12 +19,6 @@ data = load_data()
 st.subheader("Datos Cargados")
 st.write(data)
 
-# Opcional: Gráficos o análisis
-st.subheader("Análisis de Datos")
-year = st.selectbox("Selecciona un año:", data['year'].unique())
-filtered_data = data[data['year'] == year]
-st.write(filtered_data)
-
 # Mapa de ubicaciones
 st.subheader("Mapa de Ubicaciones")
 st.map(data[['latitude', 'longitude']])
