@@ -24,6 +24,9 @@ st.write(data)
 # Normalizar nombres de columnas
 data.columns = data.columns.str.strip().str.lower()
 
+# Verificar columnas
+st.write("Columnas disponibles:", df.columns)
+
 # Mostrar la tabla
 st.subheader('Avistamientos de mamíferos en el Área de Conservación Guanacaste')
 st.dataframe(data, hide_index=True)
