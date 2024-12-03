@@ -24,18 +24,4 @@ st.write(data)
 # Normalizar nombres de columnas
 data.columns = data.columns.str.strip().str.lower()
 
-# Verificar que la columna 'year' exista
-if 'year' in data.columns:
-    # Crear un selectbox para el campo 'year'
-    years = data['year'].unique()
-    selected_year = st.selectbox("Selecciona un año:", years)
-
-    # Filtrar los datos según el año seleccionado
-    filtered_data = data[data['year'] == selected_year]
-
-    # Mostrar tabla con los datos filtrados
-    st.subheader("Datos Filtrados por Año")
-    st.dataframe(filtered_data)
-else:
-    st.write("La columna 'year' no se encuentra en el DataFrame.")
 
