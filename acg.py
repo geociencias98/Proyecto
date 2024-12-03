@@ -4,8 +4,8 @@ import folium
 from folium import plugins
 
 # Configuración de la aplicación
-st.title("Explorador de Datos de Especies")
-st.write("Cargue un archivo CSV con datos de especies.")
+st.title("Avistamientos de mamíferos en el Área de Conservación Guanacaste")
+st.write("Registros de avistamientos de 3 especies de mamiferos (danta, venado cola blanca y coyotes) en el Área de Conservación Guanacaste.")
 
 # Cargar el CSV desde el repositorio
 @st.cache
@@ -18,7 +18,7 @@ def load_data():
 data = load_data()
 
 # Mostrar los datos
-st.subheader("Datos Cargados")
+st.subheader("Base de datos")
 st.write(data)
 
 # Normalizar nombres de columnas
