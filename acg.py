@@ -27,3 +27,19 @@ data.columns = data.columns.str.strip().str.lower()
 # Mostrar la tabla
 st.subheader('Casos totales y muertes totales por país y por día')
 st.dataframe(data, hide_index=True)
+
+# Agrupar por fecha y sumar los casos totales
+casos_totales_por_fecha = (
+    datos_filtrados
+    .groupby('year')['common_name']
+    .sum()
+    .reset_index()
+)
+
+# Crear el gráfico de líneas para casos totales
+fig_casos = px.line(
+    casos_totales_por_fecha, 
+    x='year', 
+    y='common_name', 
+    title='Casos totales a lo largo del tiempo',
+    labels={'Casos totales': 'Cantidad de casos totales', 'Fecha': 'Fecha'}
