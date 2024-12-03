@@ -21,33 +21,3 @@ data = load_data()
 st.subheader("Base de datos")
 st.write(data)
 
-# Normalizar nombres de columnas
-data.columns = data.columns.str.strip().str.lower()
-
-# Columnas relevantes del conjunto de datos
-columnas = [
-    'id', 
-    'latitude', 
-    'longitude', 
-    'scientific_name', 
-    'common_name',
-    'taxon_id',
-    'year'
-]
-datos = datos[columnas]
-
-
-# Crear un selectbox para filtrar por 'common_name'
-if 'common_name' in data.columns:
-    common_names = data['common_name'].unique()
-    selected_common_name = st.selectbox("Selecciona un nombre común:", common_names)
-
-    # Filtrar los datos según el nombre común seleccionado
-    filtered_data = data[data['common_name'] == selected_common_name]
-
-    # Mostrar tabla con los datos filtrados
-    st.subheader("Datos Filtrados por Nombre Común")
-    st.dataframe(filtered_data)
-else:
-    st.write("La columna 'common_name' no se encuentra en el DataFrame.")
-
