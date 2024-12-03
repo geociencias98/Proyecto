@@ -24,14 +24,7 @@ st.write(data)
 # Normalizar nombres de columnas
 data.columns = data.columns.str.strip().str.lower()
 
-# Verificar que las columnas 'latitude' y 'longitude' existan
-if 'latitude' in data.columns and 'longitude' in data.columns:
-    # Convertir a numérico si es necesario
-    data['latitude'] = pd.to_numeric(data['latitude'], errors='coerce')
-    data['longitude'] = pd.to_numeric(data['longitude'], errors='coerce')
 
-    # Eliminar filas con valores nulos
-    data = data.dropna(subset=['latitude', 'longitude'])
 
     # Lista de selección para nombres comunes
     common_names = data['common_name'].unique()
