@@ -5,7 +5,7 @@ from folium import plugins
 
 # Configuración de la aplicación
 st.title("Avistamientos de mamíferos en el Área de Conservación Guanacaste")
-st.write("Registros de avistamientos de 3 especies de mamiferos (danta, venado cola blanca y coyotes) en el Área de Conservación Guanacaste.")
+st.write("Registros de avistamientos de 3 especies de mamiferos (danta, venado cola blanca y coyote) en el Área de Conservación Guanacaste.")
 
 # Cargar el CSV desde el repositorio
 @st.cache
@@ -27,8 +27,8 @@ data.columns = data.columns.str.strip().str.lower()
 # Verificar que la columna 'common_name' exista
 if 'common_name' in data.columns:
     # Crear un selectbox para el campo 'common_name'
-    common_names = data['common_name'].unique()
-    selected_common_name = st.selectbox("Selecciona un nombre común:", common_names)
+    common_name = data['common_name'].unique()
+    selected_common_name = st.selectbox("Selecciona un nombre común:", common_name)
 
     # Filtrar los datos según el nombre común seleccionado
     filtered_data = data[data['common_name'] == selected_common_name]
