@@ -21,17 +21,35 @@ data = load_data()
 st.subheader("Datos Cargados")
 st.write(data)
 
-data['latitude'] = pd.to_numeric(data['latitude'], errors='coerce')
-data['longitude'] = pd.to_numeric(data['longitude'], errors='coerce')
+# Normalizar nombres de columnas
+data.columns = data.columns.str.strip().str.lower()
 
 # Verificar que las columnas 'latitude' y 'longitude' existan
 if 'latitude' in data.columns and 'longitude' in data.columns:
+    # Convertir a numérico si es necesario
+    data['latitude'] = pd.to_numeric(data['latitude'], errors='coerce')
+    data['longitude'] = pd.to_numeric(data['longitude'], errors='coerce')
+
+    # Eliminar filas con valores nulos
+    data = data.dropna(subset=['latitude', 'longitude'])
+
+    # Lista de selección para nombres comunes
+    common_names = data['common_name'].unique()
+    selected_name = st.selectbox("Selecciona un nombre común:", common_names)
+
+    # Filtrar los datos según el nombre seleccionado
+    filtered_data = data[data['common_name'] == selected_name]
+
+    # Mostrar tabla con los datos filtrados
+    st.subheader("Datos Filtrados")
+    st.dataframe(filtered_data)
+
     # Crear un mapa centrado en la ubicación promedio
-    map_center = [data['latitude'].mean(), data['longitude'].mean()]
+    map_center = [filtered_data['latitude'].mean(), filtered_data['longitude'].mean()]
     map_folium = folium.Map(location=map_center, zoom_start=6)
 
-    # Agregar marcadores para cada animal
-    for index, row in data.iterrows():
+    # Agregar marcadores para cada animal filtrado
+    for index, row in filtered_data.iterrows():
         folium.Marker(
             location=[row['latitude'], row['longitude']],
             popup=(
