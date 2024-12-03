@@ -17,9 +17,9 @@ def load_data():
 # Cargar los datos
 data = load_data()
 
-# Mostrar la tabla
-st.subheader('Base de datos')
-st.dataframe(data, hide_index=True)
+# Mostrar los datos
+st.subheader("Base de datos")
+st.write(data)
 
 # Normalizar nombres de columnas
 data.columns = data.columns.str.strip().str.lower()
