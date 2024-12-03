@@ -24,8 +24,18 @@ st.dataframe(data, hide_index=True)
 # Normalizar nombres de columnas
 data.columns = data.columns.str.strip().str.lower()
 
-# Verificar columnas
-st.write("Columnas disponibles:", df.columns)
+# Columnas relevantes del conjunto de datos
+columnas = [
+    'id', 
+    'latitude', 
+    'longitude', 
+    'scientific_name', 
+    'common_name',
+    'taxon_id',
+    'year'
+]
+datos = datos[columnas]
+
 
 # Crear un selectbox para filtrar por 'common_name'
 if 'common_name' in data.columns:
