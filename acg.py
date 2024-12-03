@@ -8,7 +8,7 @@ st.write("Cargue un archivo CSV con datos de especies.")
 # Cargar el CSV desde el repositorio
 @st.cache
 def load_data():
-    url = "https://raw.githubusercontent.com/geociencias98/Proyecto/acg.csv"
+    url = "https://raw.githubusercontent.com/geociencias98/Proyecto/main/acg.csv"
     data = pd.read_csv(url)
     return data
 
